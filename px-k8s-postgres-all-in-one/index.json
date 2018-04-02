@@ -17,7 +17,6 @@
             },
             {
                 "title" : "Create volume for PostgreSQL",
-                "courseData": "background.sh",
                 "text": "2.px-postgres-vol.md"
             },
             {
