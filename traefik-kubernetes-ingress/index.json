@@ -8,7 +8,7 @@
             {
                 "title" : "Install Traefic",
                 "text": "1-install-traefik.md"
-            },
+            }
         ],
         "intro": {
             "text": "intro.md",
