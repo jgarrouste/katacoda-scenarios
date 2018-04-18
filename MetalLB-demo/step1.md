@@ -32,10 +32,13 @@ router at `10.96.0.101`.
 - Finally, the `test-bgp-router-ui` service is a little UI that shows
 us what routers are thinking.
 
-
+Get Services :
 ```kubectl -n metallb-system get svc```{{execute T1}}
 
-Let's open that UI now : http://[[CLIENT_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
+Get the value of the Node port assigned :
+```echo $(kubectl -n metallb-system get services/test-bgp-router-ui -o go-template='{{(index .spec.ports 0).nodePort}}')```
+
+Open Katacoda Web Preview and enter this port : http://[[CLIENT_SUBDOMAIN]]-[[KATACODA_HOST]].environments.katacoda.com/
 
 If you're comfortable with BGP and networking, the raw router status
 may be interesting. If you're not, don't worry, the important part is
