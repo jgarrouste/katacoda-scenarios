@@ -6,7 +6,7 @@ would be set up as a dedicated hardware router (e.g. an Ubiquiti
 EdgeRouter), or a soft router using open-source software (e.g. a Linux
 machine running the [BIRD](http://bird.network.cz) routing suite).
 
-For this tutorial, we'll deploy a pod inside minikube that runs both
+For this tutorial, we'll deploy a pod inside the cluster that runs both
 the BIRD and [Quagga](http://www.nongnu.org/quagga/). They will be
 configured to speak BGP, but won't configure Linux to forward traffic
 based on the data they receive. Instead, we'll just inspect that data

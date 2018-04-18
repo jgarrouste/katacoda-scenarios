@@ -30,5 +30,5 @@ by looking at the event history for the service, with
 Refresh your test-bgp-router-ui page, and see what our routers thinks:
 
 Success! MetalLB told our routers that 198.51.100.0 exists on our
-Minikube VM, and that the routers should forward any traffic for that
+Cluster, and that the routers should forward any traffic for that
 IP to us.
