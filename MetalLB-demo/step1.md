@@ -13,13 +13,13 @@ based on the data they receive. Instead, we'll just inspect that data
 to see what a real router _would_ do.
 
 Deploy these test routers with `kubectl`:
-
 ```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/test-bgp-router.yaml```{{execute T1}}
 
 This will create a deployment for our BGP routers, as well as four
-cluster-internal services. Wait for the router pod to start, by
-running ```kubectl get pods -n metallb-system```{{execute T1}} until you see the
-test-bgp-router pod in the `Running` state.
+cluster-internal services. 
+
+Wait for the router pod to start, by running the next command until you see the test-bgp-router pod in the `Running` state.
+```kubectl get pods -n metallb-system```{{execute T1}}
 
 In addition to the router pod, the `test-bgp-router.yaml` manifest
 created four cluster-internal services:
@@ -32,8 +32,10 @@ router at `10.96.0.101`.
 - Finally, the `test-bgp-router-ui` service is a little UI that shows
 us what routers are thinking.
 
-Let's open that UI now. Run: `minikube service -n metallb-system
-test-bgp-router-ui`.
+
+```kubectl -n metallb-system get svc```{{execute T1}}
+
+Let's open that UI now : http://[[CLIENT_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 If you're comfortable with BGP and networking, the raw router status
 may be interesting. If you're not, don't worry, the important part is
