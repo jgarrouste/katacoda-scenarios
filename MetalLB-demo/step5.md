@@ -40,15 +40,18 @@ assigned.
 
 Sounds easy enough, let's apply that configuration:
 
-`kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-3.yaml`
+```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-3.yaml```{{execute T1}}
 
 Refresh the test-bgp-router-ui page and... Hmm, strange, our routers
 are still being told to use `198.51.100.0`, even though we just told
 MetalLB that this address should not be used. What happened?
 
 To answer that, let's inspect the running configuration in Kubernetes,
-by running `kubectl describe configmap -n metallb-system
-config`. At the bottom of the output, you should see an event
+by running : 
+
+```kubectl describe configmap -n metallb-system config```{{execute T1}}
+
+At the bottom of the output, you should see an event
 log that looks like this:
 
 ```
@@ -91,7 +94,7 @@ Now, the new configuration that we tried to apply is valid, because
 nothing is using the `.0` address any more. Let's reapply it, so that
 MetalLB reloads again:
 
-`kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-4.yaml`
+```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-4.yaml```{{execute T1}}
 
 _You may have noticed that we applied tutorial-4.yaml, not the
 tutorial-3.yaml from before. This is another rough edge in the current
@@ -115,15 +118,3 @@ _One final bit of clunkiness: right now, you need to inspect metallb's
 logs to see that a new configuration was successfully loaded. Once
 MetalLB only allows valid configurations to be submitted, this
 clunkiness will also go away._
-
-## Teardown
-
-If you're not using the minikube cluster for anything else, you can
-clean up simply by running `minikube delete`. If you want to do a more
-targeted cleanup, you can delete just the things we created in this
-tutorial with:
-
-`kubectl delete -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-2.yaml,https://raw.githubusercontent.com/google/metallb/master/manifests/test-bgp-router.yaml,https://raw.githubusercontent.com/google/metallb/master/manifests/metallb.yaml`
-
-This will tear down all of MetalLB, as well as our test BGP routers
-and the nginx load-balanced service.

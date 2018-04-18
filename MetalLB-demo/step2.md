@@ -16,6 +16,7 @@ Ignore those bits for now, the two pieces of interest are the
 "controller" deployment, and the "speaker" daemonset.
 
 Wait for these to start by monitoring ```kubectl get pods -n metallb-system```{{execute T1}}.
+
 Eventually, you should see two running pods, in addition to the BGP router from the previous step (again, the pod name
 suffixes will be different on your cluster).
 

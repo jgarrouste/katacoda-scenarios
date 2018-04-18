@@ -15,16 +15,11 @@ nginx-558d677d68-j9x9x       1/1       Running   0          47s
 
 Once it's running, take a look at the `nginx` service with ```kubectl get service nginx```{{execute T1}}:
 
-```
-NAME      TYPE           CLUSTER-IP   EXTERNAL-IP    PORT(S)        AGE
-nginx     LoadBalancer   10.96.0.29   198.51.100.0   80:32732/TCP   1m
-```
-
 We have an external IP! Because the service is of type LoadBalancer,
 MetalLB took `198.51.100.0` from the address pool we configured, and
 assigned it to the nginx service. You can see this even more clearly
-by looking at the event history for the service, with `kubectl
-describe service nginx`:
+by looking at the event history for the service, with 
+```kubectl describe service nginx```{{execute T1}} :
 
 ```
   Type    Reason          Age   From                Message
@@ -33,8 +28,6 @@ describe service nginx`:
 ```
 
 Refresh your test-bgp-router-ui page, and see what our routers thinks:
-
-[![BGP routers, receiving a route from MetalLB](/images/metallb-bgp-router-announcing.png)](/images/metallb-bgp-router-announcing.png)
 
 Success! MetalLB told our routers that 198.51.100.0 exists on our
 Minikube VM, and that the routers should forward any traffic for that

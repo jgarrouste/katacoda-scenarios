@@ -49,17 +49,11 @@ see happier routers.
 
 Success! The MetalLB BGP speaker connected to our routers. You can
 verify this by looking at the logs for the BGP speaker. 
-Run ```kubectl logs -n metallb-system -l app=speaker```{{execute T1}}
-and among other log entries, you should find something like:
+```
+POD=$(kubectl -n metallb-system get pods | grep speaker | awk '{print $1}')
+kubectl -n metallb-system logs pods/$POD | grep established
+```{{execute T1}}
 
-```
-I1127 08:53:49.118588       1 main.go:203] Start config update
-I1127 08:53:49.118705       1 main.go:255] Peer "10.96.0.100" configured, starting BGP session
-I1127 08:53:49.118710       1 main.go:255] Peer "10.96.0.101" configured, starting BGP session
-I1127 08:53:49.118729       1 main.go:270] End config update
-I1127 08:53:49.170535       1 bgp.go:55] BGP session to "10.96.0.100:179" established
-I1127 08:53:49.170932       1 bgp.go:55] BGP session to "10.96.0.101:179" established
-```
 
 However, as the BGP routers pointed out, MetalLB is connected, but
 isn't telling them about any services yet. That's because all the
