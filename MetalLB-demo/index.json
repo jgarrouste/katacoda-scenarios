@@ -1,6 +1,7 @@
 {
   "title": "MetalLB Demo",
   "description": "This scenarios sets up MetalLB, and showcases BGP load-balancing in a simulated environment. If you don’t have a bare metal cluster to test on yet, or if you want to explore MetalLB’s BGP functionality, this is the tutorial for you.",
+  "icon": "fa-kubernetes",
   "details": {
     "steps": [
       {
