@@ -1,18 +1,45 @@
-```
-kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.5.0/manifests/test-bgp-router.yaml
-```
+## Set up a BGP routers
 
-```
-kubectl -n metallb-system get pods
-```
+MetalLB exposes load-balanced services using the BGP routing protocol,
+so we need a BGP router to talk to. In a production cluster, this
+would be set up as a dedicated hardware router (e.g. an Ubiquiti
+EdgeRouter), or a soft router using open-source software (e.g. a Linux
+machine running the [BIRD](http://bird.network.cz) routing suite).
 
-kubectl -n metallb-system get svc | grep test-bgp-router-ui
+For this tutorial, we'll deploy a pod inside minikube that runs both
+the BIRD and [Quagga](http://www.nongnu.org/quagga/). They will be
+configured to speak BGP, but won't configure Linux to forward traffic
+based on the data they receive. Instead, we'll just inspect that data
+to see what a real router _would_ do.
 
-kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.5.0/manifests/metallb.yaml
+Deploy these test routers with `kubectl`:
 
-```
-kubectl -n metallb-system get pods
-```
+`kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/test-bgp-router.yaml`
 
+This will create a deployment for our BGP routers, as well as four
+cluster-internal services. Wait for the router pod to start, by
+running `kubectl get pods -n metallb-system` until you see the
+test-bgp-router pod in the `Running` state.
 
+In addition to the router pod, the `test-bgp-router.yaml` manifest
+created four cluster-internal services:
 
+- The `test-bgp-router-bird` service exposes the BIRD BGP router at
+`10.96.0.100`, so that we have a stable IP address for MetalLB to talk
+to.
+- Similarly, the `test-bgp-router-quagga` service exposes the Quagga
+router at `10.96.0.101`.
+- Finally, the `test-bgp-router-ui` service is a little UI that shows
+us what routers are thinking.
+
+Let's open that UI now. Run: `minikube service -n metallb-system
+test-bgp-router-ui`.
+
+If you're comfortable with BGP and networking, the raw router status
+may be interesting. If you're not, don't worry, the important part is
+above: our routers are running, but know nothing about our Kubernetes
+cluster, because MetalLB is not connected.
+
+Obviously, MetalLB isn't connected to our routers, it's not installed
+yet! Let's address that. Keep the test-bgp-router-ui tab open, we'll
+come back to it shortly.

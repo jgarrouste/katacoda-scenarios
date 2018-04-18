@@ -1,6 +1,6 @@
 {
   "title": "MetalLB Demo",
-  "description": "MetalLB hooks into your Kubernetes cluster, and provides a network load-balancer implementation. In short, it allows you to create Kubernetes services of type “LoadBalancer” in clusters that don’t run on a cloud provider, and thus cannot simply hook into paid products to provide load-balancers. It has two features that work together to provide this service: address allocation, and external announcement.",
+  "description": "This scenarios sets up MetalLB, and showcases BGP load-balancing in a simulated environment. If you don’t have a bare metal cluster to test on yet, or if you want to explore MetalLB’s BGP functionality, this is the tutorial for you.",
   "details": {
     "steps": [
       {

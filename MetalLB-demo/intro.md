@@ -1,9 +1,7 @@
----
-title: BGP on Minikube
-weight: 10
----
+Source : https://metallb.universe.tf/tutorial/minikube/
 
-In this scenarios, we'll set up some BGP routers, configure MetalLB to use them, and create some load-balanced services. We'll be
+In this scenarios, we'll set up some BGP routers, configure
+MetalLB to use them, and create some load-balanced services. We'll be
 able to inspect the state of the BGP routers, and see that they
 reflect the intent that we expressed in Kubernetes.
 
@@ -23,9 +21,3 @@ Here is the outline of what we're going to do:
 5. Create a load-balanced service, and observe how MetalLB sets it up,
 6. Change MetalLB's configuration, and fix a bad configuration,
 7. Tear down the playground.
-
-{{% notice note %}}
-This tutorial currently only works on amd64 (aka x86_64) systems,
-because the test BGP router container image doesn't work on other
-platforms yet.
-{{% /notice %}}
