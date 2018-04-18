@@ -14,11 +14,11 @@ to see what a real router _would_ do.
 
 Deploy these test routers with `kubectl`:
 
-`kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/test-bgp-router.yaml`
+```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/test-bgp-router.yaml```
 
 This will create a deployment for our BGP routers, as well as four
 cluster-internal services. Wait for the router pod to start, by
-running `kubectl get pods -n metallb-system` until you see the
+running ```kubectl get pods -n metallb-system``` until you see the
 test-bgp-router pod in the `Running` state.
 
 In addition to the router pod, the `test-bgp-router.yaml` manifest
