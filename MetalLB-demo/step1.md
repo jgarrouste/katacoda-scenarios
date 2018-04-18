@@ -38,7 +38,6 @@ Get Services :
 Get the value of the Node port assigned :
 ```echo $(kubectl -n metallb-system get services/test-bgp-router-ui -o go-template='{{(index .spec.ports 0).nodePort}}')```{{execute T1}}
 
-Open Katacoda Web Preview and enter this port : http://[[CLIENT_SUBDOMAIN]]-[[KATACODA_HOST]].environments.katacoda.com/
 Open Katacoda Web Preview and enter this port : http://[[HOST_SUBDOMAIN]]-[[KATACODA_HOST]].environments.katacoda.com/
 
 If you're comfortable with BGP and networking, the raw router status
