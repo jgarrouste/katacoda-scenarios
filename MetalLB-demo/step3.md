@@ -41,16 +41,16 @@ router.
 
 Apply this configuration now:
 
-```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-1.yaml```
+```kubectl apply -f https://raw.githubusercontent.com/google/metallb/master/manifests/tutorial-1.yaml```{{execute T1}}
 
 The configuration should take effect within a few seconds. Refresh the
 test-bgp-router-ui browser page again. If all went well, you should
 see happier routers.
 
 Success! The MetalLB BGP speaker connected to our routers. You can
-verify this by looking at the logs for the BGP speaker. Run ```kubectl
-logs -n metallb-system -l app=speaker```, and among other log
-entries, you should find something like:
+verify this by looking at the logs for the BGP speaker. 
+Run ```kubectl logs -n metallb-system -l app=speaker```{{execute T1}}
+and among other log entries, you should find something like:
 
 ```
 I1127 08:53:49.118588       1 main.go:203] Start config update
