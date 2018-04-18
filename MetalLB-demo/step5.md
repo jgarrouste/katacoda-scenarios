@@ -83,10 +83,12 @@ not compatible with the cluster's running state.
 
 Okay, so how do we fix this? We need to _explicitly_ change the
 configuration of the nginx service to be compatible with the new
-configuration. To do this, run `kubectl edit service nginx`, and in
-the `spec` section add: `loadBalancerIP: 198.51.100.1`.
+configuration. To do this, run 
+```kubectl edit service nginx```{{execute T1}}
 
-Save the change, and run `kubectl describe service nginx` again. You
+and in the `spec` section add: `loadBalancerIP: 198.51.100.1`.
+
+Save the change, and run ```kubectl describe service nginx```{{execute T1}} again. You
 should see an `IPAllocated` event showing that MetalLB changed the
 service's assigned address as instructed.
 
